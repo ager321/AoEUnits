@@ -2,15 +2,11 @@ package com.example.aoeunits.model
 
 import android.util.Log
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
-import retrofit2.*
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.POST
-import android.os.AsyncTask.execute
-import kotlinx.coroutines.*
 import java.io.IOException
-import java.lang.Runnable
 
 
 class AoEDataReciver {
@@ -55,5 +51,30 @@ private val aoeAPI : AoEUnitAPI
 
         return listOfUnits
     }
+    fun getUnit(name: String) : AoEUnitValue?
+    {
+        var unit: AoEUnitValue? = null
+        val call = aoeAPI.loadUnit(name)
+
+        val thread: Thread = object: Thread(){
+            override fun run(){
+                    try {
+                        val response: Response<AoEUnitValue> = call.execute()
+                            unit = response.body()
+
+                    } catch (e: IOException) {
+                        Log.d("api fail", "api load failure")
+                    }
+                }
+            }
+
+        thread.start()
+        thread.join()
+        Log.d("api fail", "halo ${unit?.hit_points}")
+        return unit
+    }
+
+
+
 
 }

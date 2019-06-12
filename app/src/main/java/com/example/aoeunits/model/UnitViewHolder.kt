@@ -23,7 +23,7 @@ class UnitViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bind(aoe_unit: AoEUnitValue) {
         mListNameView?.text = aoe_unit.name
         mDescriptionView?.text = aoe_unit.description
-        mHitpointsView?.text = "HP: " + aoe_unit.hitPoints.toString()
+        mHitpointsView?.text = "HP: " + aoe_unit.hit_points.toString()
         mAttackView?.text = "Attack value: : " + aoe_unit.attack.toString()
     }
 

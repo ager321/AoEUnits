@@ -1,24 +1,21 @@
 package com.example.aoeunits.model
 
-//data class AoEUnitValue (
-//    var id : Int,
-//    var name : String,
-//    val description : String)
+import com.google.gson.annotations.SerializedName
 
 data class AoEUnitValue (
-    val id: Long,
-    val name: String,
-    val description: String,
-    val createdIn: String,
-    val buildTime: Long? = null,
-    val reloadTime: Double? = null,
-    val attackDelay: Double? = null,
-    val movementRate: Double? = null,
-    val lineOfSight: Long,
-    val hitPoints: Long,
-    val attack: Long? = null,
-    val armor: String,
-    val accuracy: String? = null,
-    val searchRadius: Long? = null,
-    val armorBonus: List<String>? = null
+
+    @SerializedName("id") val id : Long,
+    @SerializedName("name") val name : String,
+    @SerializedName("description") val description : String,
+    @SerializedName("expansion") val expansion : String,
+    @SerializedName("age") val age : String,
+    @SerializedName("created_in") val created_in : String,
+    @SerializedName("build_time") val build_time : Int,
+    @SerializedName("reload_time") val reload_time : Double?,
+    @SerializedName("movement_rate") val movement_rate : Double,
+    @SerializedName("line_of_sight") val line_of_sight : Long,
+    @SerializedName("hit_points") val hit_points : Long,
+    @SerializedName("attack") val attack : Int,
+    @SerializedName("armor") val armor : String
+
 )
